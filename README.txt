@@ -134,13 +134,13 @@ Enabled and started the auditd service to monitor and log system-level activity 
 ## References
 
 - CIS Amazon Linux 2 Benchmark
-(https://www.cisecurity.org/benchmark/amazon_linux/)
+  https://www.cisecurity.org/benchmark/amazon_linux/
 
 - AWS EC2 Security Best Practices
-(https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-best-practices.html)
+  https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-best-practices.html
 
 - AWS Systems Manager Documentation
-(https://docs.aws.amazon.com/systems-manager/)
+  https://docs.aws.amazon.com/systems-manager/
 
 ---
 
