@@ -1,0 +1,65 @@
+# Hardened SSH Configuration for EC2 Lab
+
+# This is a sample full sshd_config file for an AWS EC2 instance.
+# Only essential lines for hardening are changed from the Amazon Linux 2 default.
+
+Port 22
+AddressFamily any
+ListenAddress 0.0.0.0
+ListenAddress ::
+
+# HostKey files
+HostKey /etc/ssh/ssh_host_rsa_key
+HostKey /etc/ssh/ssh_host_ecdsa_key
+HostKey /etc/ssh/ssh_host_ed25519_key
+
+# Ciphers and MACs
+# (Use strong, modern defaults—optional for CIS Level 2)
+#Ciphers aes256-ctr,aes192-ctr,aes128-ctr
+#MACs hmac-sha2-512,hmac-sha2-256
+
+# Logging
+SyslogFacility AUTHPRIV
+LogLevel INFO
+
+# Authentication:
+LoginGraceTime 60
+PermitRootLogin no                # <--- HARDENED: Disable root login
+StrictModes yes
+MaxAuthTries 4
+MaxSessions 10
+
+PubkeyAuthentication yes
+AuthorizedKeysFile .ssh/authorized_keys
+
+# Disable password authentication for all users
+PasswordAuthentication no         # <--- HARDENED: Disable password auth
+
+ChallengeResponseAuthentication no
+
+# To allow SSM, do not require a TTY:
+# (Keep defaults unless you need more CIS controls)
+
+UsePAM yes
+
+# Allow/deny users/groups as needed (leave default for lab)
+#AllowUsers ec2-user
+#DenyUsers
+
+# Prevent forwarding, X11, etc. for extra hardening (optional)
+AllowTcpForwarding no
+X11Forwarding no
+
+ClientAliveInterval 300
+ClientAliveCountMax 0
+
+# Print last login info
+PrintMotd no
+PrintLastLog yes
+
+# Keep these at default
+TCPKeepAlive yes
+UseDNS no
+Banner none
+
+# End of file

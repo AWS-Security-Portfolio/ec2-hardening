@@ -1,0 +1,16 @@
+# Hardened SSH Configuration for EC2 Lab
+# Only the key lines are shown below. Other default config lines are unchanged.
+
+PermitRootLogin no
+PasswordAuthentication no
+
+# Other recommended secure settings:
+#PubkeyAuthentication yes
+#ChallengeResponseAuthentication no
+#UsePAM yes
+#AllowTcpForwarding no
+#X11Forwarding no
+#ClientAliveInterval 300
+#ClientAliveCountMax 0
+
+# ...rest of configuration remains default or as per your system
