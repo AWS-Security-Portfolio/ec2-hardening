@@ -71,6 +71,8 @@ This project demonstrates the process of securely deploying and hardening an Ama
 
 ## Screenshots
 
+*All relevant screenshots demonstrating each step are included in the screenshots/ folder of this repository.
+
 | Order | File Name                  | What it Shows                                 |
 | ----- | -------------------------- | --------------------------------------------- |
 | 1     | iam-role-policy-attach.png | IAM role policy attached for SSM              |
