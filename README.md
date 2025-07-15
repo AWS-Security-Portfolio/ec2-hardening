@@ -35,12 +35,12 @@ This project demonstrates the process of securely deploying and hardening an Ama
 
 ## Objectives
 
-- Launch an EC2 instance using secure defaults
+- Launch an EC2 instance using secure defaults.
 - Apply a Security Group allowing only necessary traffic (SSH, HTTP, HTTPS)
-- Attach an IAM role with minimum permissions required for SSM management
-- Enforce use of AWS Systems Manager Session Manager instead of public SSH access
-- Harden the operating system by disabling root login, password authentication, and ensuring system patching
-- Enable system auditing with `auditd`
+- Attach an IAM role with minimum permissions required for SSM management.
+- Enforce use of AWS Systems Manager Session Manager instead of public SSH access.
+- Harden the operating system by disabling root login, password authentication, and ensuring system patching.
+- Enable system auditing with `auditd`.
 
 ---
 
@@ -51,9 +51,9 @@ This project demonstrates the process of securely deploying and hardening an Ama
 
 2. Security Group Configuration
    - Defined inbound rules to only allow:
-      - SSH (port 22) — restricted to my IP address
-      - HTTP (port 80) — open to the internet
-      - HTTPS (port 443) — open to the internet
+      - SSH (port 22) — restricted to my IP address.
+      - HTTP (port 80) — open to the internet.
+      - HTTPS (port 443) — open to the internet.
    - All other inbound traffic is denied.
 
 3. EC2 Launch with Hardened Settings
@@ -64,9 +64,9 @@ This project demonstrates the process of securely deploying and hardening an Ama
    - Used AWS Systems Manager Session Manager to connect securely to the instance, eliminating the need for public SSH and associated risks.
 
 5. System Hardening
-   - SSH Hardening: Disabled root login and password authentication in `/etc/ssh/sshd_config`
-   - OS Updates: Applied all available security updates and patches
-   - System Auditing: Installed, enabled, and started the `auditd` service for auditing system-level events
+   - SSH Hardening: Disabled root login and password authentication in `/etc/ssh/sshd_config`.
+   - OS Updates: Applied all available security updates and patches.
+   - System Auditing: Installed, enabled, and started the `auditd` service for auditing system-level events.
 
 6. Verification and Documentation
    - Collected before-and-after evidence (screenshots) to demonstrate the impact of hardening actions and verify settings.
