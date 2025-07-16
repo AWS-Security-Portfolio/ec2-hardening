@@ -7,6 +7,7 @@ Hardened EC2 deployment using least privilege IAM roles, restricted security gro
 ## Table of Contents
 
 - [Overview]
+- [Diagram]
 - [Objectives]
 - [Steps Performed]
   - [1. IAM Role Creation]
