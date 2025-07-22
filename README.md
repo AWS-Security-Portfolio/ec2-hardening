@@ -7,6 +7,8 @@ Hardened EC2 deployment using least privilege IAM roles, restricted security gro
 ## Table of Contents
 
 - [Overview]
+- [Real-World Risk]
+- [What I Built]
 - [Diagram]
 - [Objectives]
 - [Steps Performed]
@@ -16,6 +18,7 @@ Hardened EC2 deployment using least privilege IAM roles, restricted security gro
   - [4. SSM Access Verification]
   - [5. System Hardening]
   - [6. Verification and Documentation]
+  - [7. Cleanup]
 - [Screenshots]
 - [Lessons Learned]
 - [References]
@@ -25,6 +28,25 @@ Hardened EC2 deployment using least privilege IAM roles, restricted security gro
 ## Overview
 
 This project demonstrates the process of securely deploying and hardening an Amazon EC2 instance in AWS, following CIS benchmarks and AWS best practices. The lab focuses on minimizing attack surface, enforcing least privilege, automating instance management, and implementing essential security controls.
+
+---
+
+## Real-World Risk
+
+In real-world cloud environments, improperly secured EC2 instances are a common entry point for attackers. Exposed SSH ports, weak IAM permissions, outdated operating systems and a lack of auditing can enable unauthorized access, privilege escalation, data exfiltration or even full infrastructure compromise. Without proper hardening and monitoring, a single misconfiguration can lead to ransomware, cryptomining or breaches with significant business and reputational impact. This lab addresses these risks by enforcing strong access controls and system security at every layer.
+
+---
+
+## What I Built
+
+- Launched an Amazon EC2 instance with Amazon Linux 2.
+- Applied a Security Group that only allows required traffic (SSH from my IP, HTTP/HTTPS from the internet)
+- Created and attached an IAM role with the least-privilege permissions needed for SSM management.
+- Enforced AWS Systems Manager Session Manager for secure, keyless remote access (no public SSH)
+- Hardened the OS by disabling root login and password authentication in SSH configuration.
+- Applied all available OS updates and patches.
+- Installed, enabled, and verified auditd for system activity logging.
+- Documented the process with before/after evidence and automation scripts.
 
 ---
 
@@ -71,6 +93,13 @@ This project demonstrates the process of securely deploying and hardening an Ama
 
 6. Verification and Documentation
    - Collected before-and-after evidence (screenshots) to demonstrate the impact of hardening actions and verify settings.
+
+7. Cleanup
+   - Terminated the EC2 instance to stop all compute and storage charges.
+   - Deleted the custom Security Group used for the lab.
+   - Removed the IAM role and any custom IAM policies created for the lab.
+   - Deleted any SSH key pairs or EBS volumes if created solely for this lab (optional)
+   - Confirmed no remaining resources to avoid unexpected AWS charges.
 
 ---
 
