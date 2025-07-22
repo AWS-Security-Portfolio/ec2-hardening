@@ -13,11 +13,11 @@ Hardened EC2 deployment using least privilege IAM roles, restricted security gro
 - [Objectives]
 - [Steps Performed]
   - [1. IAM Role Creation]
-  - [2. Security Group Configuration]
-  - [3. EC2 Launch with Hardened Settings]
-  - [4. SSM Access Verification]
-  - [5. System Hardening]
-  - [6. Verification and Documentation]
+  - [2. Security Group Setup]
+  - [3. EC2 Instance Launch]
+  - [4. Secure Instance Management with SSM]
+  - [5. SSH Hardening]
+  - [6. OS Updates and Auditing]
   - [7. Cleanup]
 - [Screenshots]
 - [Lessons Learned]
@@ -70,36 +70,32 @@ In real-world cloud environments, improperly secured EC2 instances are a common 
 ## Steps Performed
 
 1. IAM Role Creation
-   -Created a new IAM role and attached the `AmazonSSMManagedInstanceCore` policy to enable SSM management for the EC2 instance, adhering to least privilege principles.
+   - Created a dedicated IAM role with the AmazonSSMManagedInstanceCore policy for secure SSM access (Screenshot: iam-role-policy-attach.png)
 
-2. Security Group Configuration
-   - Defined inbound rules to only allow:
-      - SSH (port 22) — restricted to my IP address.
-      - HTTP (port 80) — open to the internet.
-      - HTTPS (port 443) — open to the internet.
-   - All other inbound traffic is denied.
+2. Security Group Setup
+   - Configured a Security Group to only allow required inbound traffic:
+      - SSH (port 22) from my IP address.
+      - HTTP (80) and HTTPS (443) from the internet (Screenshot: sg-inbound-rules.png)
 
-3. EC2 Launch with Hardened Settings
-   - Launched an Amazon Linux EC2 instance with the configured security group and IAM role.  
-   - Set Instance Metadata Service to IMDSv2 only for additional protection against metadata exposure.
+3. EC2 Instance Launch
+   - Launched an EC2 instance with Amazon Linux 2, attaching the custom IAM role and Security Group.
+   - Configured advanced settings to enforce IMDSv2 and verify launch parameters (Screenshots: ec2-advanced-details.png, ec2-advanced-details-2.png & ec2-launch-summary.png)
 
-4. SSM Access Verification
-   - Used AWS Systems Manager Session Manager to connect securely to the instance, eliminating the need for public SSH and associated risks.
+4. Secure Instance Management with SSM
+   - Verified the instance registered as "Managed" in SSM Fleet Manager (Screenshot: ssm-fleet-managed.png)
+   - Connected to the instance using Session Manager, proving secure, keyless administration (Screenshot: ssm-session.png)
 
-5. System Hardening
-   - SSH Hardening: Disabled root login and password authentication in `/etc/ssh/sshd_config`.
-   - OS Updates: Applied all available security updates and patches.
-   - System Auditing: Installed, enabled, and started the `auditd` service for auditing system-level events.
+5. SSH Hardening
+   - Captured the initial SSH configuration state before hardening (Screenshot: sshd-before.png)
+   - Disabled root login and password authentication in /etc/ssh/sshd_config.
+   - Reloaded SSH service and verified the hardened settings (Screenshot: sshd-after.png)
 
-6. Verification and Documentation
-   - Collected before-and-after evidence (screenshots) to demonstrate the impact of hardening actions and verify settings.
+6. OS Updates and Auditing
+   - Applied all available system updates and patches using the OS package manager (Screenshot: os-update.png)
+   - Installed, enabled, and verified the auditd service for system activity logging (Screenshot: auditd-status.png)
 
 7. Cleanup
-   - Terminated the EC2 instance to stop all compute and storage charges.
-   - Deleted the custom Security Group used for the lab.
-   - Removed the IAM role and any custom IAM policies created for the lab.
-   - Deleted any SSH key pairs or EBS volumes if created solely for this lab (optional)
-   - Confirmed no remaining resources to avoid unexpected AWS charges.
+   - Terminated the EC2 instance, deleted the custom Security Group and IAM role to avoid ongoing costs.
 
 ---
 
@@ -120,31 +116,6 @@ In real-world cloud environments, improperly secured EC2 instances are a common 
 | 9     | sshd-after.png             | SSH config after hardening                    |
 | 10    | os-update.png              | OS/system update completion                   |
 | 11    | auditd-status.png          | auditd running and enabled                    |
-
-## Screenshot Explanations
-
-1. iam-role-policy-attach.png: Attached the 'AmazonSSMManagedInstanceCore' policy to a new IAM role. This ensures the EC2 instance only has the minimum permissions needed for SSM management, following the principle of least privilege.
-
-2. sg-inbound-rules.png: Configured the Security Group to only allow inbound traffic on ports 22 (SSH, limited to my IP), 80 (HTTP), and 443 (HTTPS). All other ports remain blocked for better security.
-
-3. ec2-advanced-details.png: During EC2 launch, selected the IAM role for SSM access and set Instance Metadata Service to “V2 only” for improved metadata security.
-
-4. ec2-advanced-details-2.png: Alternate or additional view showing the same advanced settings to further document proper instance configuration.
-
-5. ec2-launch-summary.png: Review page showing all instance launch settings—confirms the right security group and IAM role were selected before starting the EC2 instance.
-
-6. ssm-session.png: Proved secure access to the EC2 instance using AWS Systems Manager Session Manager. This method avoids exposing SSH to the internet, reducing attack surface.
-
-7. ssm-fleet-managed.png: Verified in SSM Fleet Manager that the instance is registered as “Managed.” This confirms SSM Agent is running and the IAM role is working.
-
-8. sshd-before.png
-Captured the initial state of the SSH configuration file, showing default settings for 'PermitRootLogin' and 'PasswordAuthentication' before hardening.
-
-9. sshd-after.png: After running hardening commands, both 'PermitRootLogin' and 'PasswordAuthentication' are set to no, in line with CIS and AWS best practices.
-
-10. os-update.png: Ran a full system update using the OS package manager to ensure all security patches and updates are applied.
-
-11. auditd-status.png: Enabled and started the auditd service to monitor and log system-level activity for improved incident response and auditing.
 
 ---
 
