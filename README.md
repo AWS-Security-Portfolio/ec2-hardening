@@ -69,32 +69,32 @@ In real-world cloud environments, improperly secured EC2 instances are a common 
 
 ## Steps Performed
 
-1. IAM Role Creation
-   - Created a dedicated IAM role with the AmazonSSMManagedInstanceCore policy for secure SSM access (Screenshot: iam-role-policy-attach.png)
+**1. IAM Role Creation**
+   - Created a dedicated IAM role with the AmazonSSMManagedInstanceCore policy for secure SSM access *(Screenshot: iam-role-policy-attach.png)*
 
-2. Security Group Setup
+**2. Security Group Setup**
    - Configured a Security Group to only allow required inbound traffic:
       - SSH (port 22) from my IP address.
-      - HTTP (80) and HTTPS (443) from the internet (Screenshot: sg-inbound-rules.png)
+      - HTTP (80) and HTTPS (443) from the internet *(Screenshot: sg-inbound-rules.png)*
 
-3. EC2 Instance Launch
+**3. EC2 Instance Launch**
    - Launched an EC2 instance with Amazon Linux 2, attaching the custom IAM role and Security Group.
-   - Configured advanced settings to enforce IMDSv2 and verify launch parameters (Screenshots: ec2-advanced-details.png, ec2-advanced-details-2.png & ec2-launch-summary.png)
+   - Configured advanced settings to enforce IMDSv2 and verify launch parameters *(Screenshots: ec2-advanced-details.png, ec2-advanced-details-2.png & ec2-launch-summary.png)*
 
-4. Secure Instance Management with SSM
-   - Verified the instance registered as "Managed" in SSM Fleet Manager (Screenshot: ssm-fleet-managed.png)
-   - Connected to the instance using Session Manager, proving secure, keyless administration (Screenshot: ssm-session.png)
+**4. Secure Instance Management with SSM**
+   - Verified the instance registered as "Managed" in SSM Fleet Manager *(Screenshot: ssm-fleet-managed.png)*
+   - Connected to the instance using Session Manager, proving secure, keyless administration *(Screenshot: ssm-session.png)*
 
-5. SSH Hardening
-   - Captured the initial SSH configuration state before hardening (Screenshot: sshd-before.png)
+**5. SSH Hardening**
+   - Captured the initial SSH configuration state before hardening *(Screenshot: sshd-before.png)*
    - Disabled root login and password authentication in /etc/ssh/sshd_config.
-   - Reloaded SSH service and verified the hardened settings (Screenshot: sshd-after.png)
+   - Reloaded SSH service and verified the hardened settings *(Screenshot: sshd-after.png)*
 
-6. OS Updates and Auditing
-   - Applied all available system updates and patches using the OS package manager (Screenshot: os-update.png)
-   - Installed, enabled, and verified the auditd service for system activity logging (Screenshot: auditd-status.png)
+**6. OS Updates and Auditing**
+   - Applied all available system updates and patches using the OS package manager *(Screenshot: os-update.png)*
+   - Installed, enabled, and verified the auditd service for system activity logging *(Screenshot: auditd-status.png)*
 
-7. Cleanup
+**7. Cleanup**
    - Terminated the EC2 instance, deleted the custom Security Group and IAM role to avoid ongoing costs.
 
 ---
@@ -131,13 +131,13 @@ In real-world cloud environments, improperly secured EC2 instances are a common 
 ## References
 
 - CIS Amazon Linux 2 Benchmark
-  https://www.cisecurity.org/benchmark/amazon_linux/
+  (https://www.cisecurity.org/benchmark/amazon_linux/)
 
 - AWS EC2 Security Best Practices
-  https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-best-practices.html
+  (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-best-practices.html)
 
 - AWS Systems Manager Documentation
-  https://docs.aws.amazon.com/systems-manager/
+  (https://docs.aws.amazon.com/systems-manager/)
 
 ---
 
