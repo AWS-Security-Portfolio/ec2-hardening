@@ -130,14 +130,9 @@ In real-world cloud environments, improperly secured EC2 instances are a common 
 
 ## References
 
-- CIS Amazon Linux 2 Benchmark
-  (https://www.cisecurity.org/benchmark/amazon_linux/)
-
-- AWS EC2 Security Best Practices
-  (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-best-practices.html)
-
-- AWS Systems Manager Documentation
-  (https://docs.aws.amazon.com/systems-manager/)
+- [CIS Amazon Linux 2 Benchmark](https://www.cisecurity.org/benchmark/amazon_linux/)
+- [AWS EC2 Security Best Practices](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-best-practices.html)
+- [AWS Systems Manager Documentation](https://docs.aws.amazon.com/systems-manager/)
 
 ---
 
