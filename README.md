@@ -6,12 +6,12 @@ Hardened EC2 deployment using least privilege IAM roles, restricted security gro
 
 ## Table of Contents
 
-- [Overview]
-- [Real-World Risk]
-- [What I Built]
-- [Diagram]
-- [Objectives]
-- [Steps Performed]
+- [Overview](#overview)
+- [Real-World Risk](#real-world-risk)
+- [What I Built](#what-i-built)
+- [Diagram](#diagram)
+- [Objectives](#objectives)
+- [Steps Performed](#steps-performed)
   - [1. IAM Role Creation]
   - [2. Security Group Setup]
   - [3. EC2 Instance Launch]
@@ -19,9 +19,9 @@ Hardened EC2 deployment using least privilege IAM roles, restricted security gro
   - [5. SSH Hardening]
   - [6. OS Updates and Auditing]
   - [7. Cleanup]
-- [Screenshots]
-- [Lessons Learned]
-- [References]
+- [Screenshots](#screenshots)
+- [Lessons Learned](#lessons-learned)
+- [References](#references)
 
 ---
 
