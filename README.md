@@ -102,7 +102,7 @@ In real-world cloud environments, improperly secured EC2 instances are a common 
 
 ## Screenshots
 
-*All screenshots are included in the screenshots/ folder of this repository.*
+*All screenshots are included in the `screenshots/` folder of this repository.*
 
 | Order | File Name                  | What it Shows                                 |
 | ----- | -------------------------- | --------------------------------------------- |
